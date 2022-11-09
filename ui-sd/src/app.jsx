@@ -2,6 +2,8 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Login  from './pages/login';
 import RegisterTopic from './pages/registerTopic';
 import RegisterClient from './pages/registerClient';
+import Bulb from './pages/bulb';
+import Switch from './pages/switch';
 
 export default function App(){
     return (
@@ -10,6 +12,8 @@ export default function App(){
                 <Route path="/" element = {<Login/>}/>
                 <Route path="/registerTopic" element = {<RegisterTopic/>}/>
                 <Route path="/registerClient" element = {<RegisterClient/>}/>
+                <Route path="/bulb" element = {<Bulb/>}/>
+                <Route path="/switch" element = {<Switch/>}/>
             </Routes>
         </Router>
     );
