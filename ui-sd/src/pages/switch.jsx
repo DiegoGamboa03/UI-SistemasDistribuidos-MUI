@@ -16,15 +16,23 @@ export default function Switch() {
 
     const [topic, setTopic] = useState('');
 
-    let state = 'on';
+    let state = 'off';
     let topicAux = '';
     const handleClick = (event) => {    
-
+        if(state == 'on'){
+            state = 'off';
+        }else{
+            state = 'on';
+        }
+        console.log('este es el estado: ' + state);
+        console.log(topic);
         let jsonPUBLISH= {
             "Client-ID": clientID,
             "Topic": topic,
+            "Message": state,
             "token": jwt
         };
+        console.log(jsonPUBLISH);
         socket.emit('PUBLISH',jsonPUBLISH);
     
     };
@@ -32,7 +40,7 @@ export default function Switch() {
     socket.on("PUBACK", (jsonPUBACK) => {
         
         if(jsonPUBACK['returnCode'] == 0){
-            setTopic(topicAux);
+
         }else{
             window.alert("sometext");
         }

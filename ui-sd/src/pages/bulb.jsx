@@ -44,7 +44,13 @@ export default function Bulb() {
   
         console.log(jsonSUBACK);
         
-      });
+    });
+
+    socket.on("PUBLISH", (jsonPUBLISH) => {
+        
+        setMessage(jsonPUBLISH['Message']);
+        
+    });
     
     return (
     <Box
