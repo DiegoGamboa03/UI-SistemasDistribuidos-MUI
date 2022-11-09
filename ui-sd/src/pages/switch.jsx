@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { TextField,Typography,Button, Link, Alert } from "@mui/material";
 import { ReactComponent as Switchon } from '../assets/switch-on.svg';
 import { ReactComponent as Switchoff } from '../assets/switch-off.svg';
+import { useNavigate } from "react-router-dom";
 import { JwtContext } from "../context/jwtContext";
 import { SocketContext } from "../context/socketContext";
 import { ClientIDContext } from "../context/clientidContext";
@@ -18,7 +19,9 @@ export default function Switch() {
     const [state, setState] = useState('off');
 
     let topicAux = '';
-    const handleClick = (event) => {    
+    let navigate = useNavigate();
+
+    const handleClickPUBLISH = (event) => {    
         if(state == 'on'){
             setState('off');
         }else{
@@ -37,6 +40,10 @@ export default function Switch() {
     
     };
 
+    const handleClickRegisterPublisher = (event) => {    
+        navigate("/registerPublisher");
+    };
+
     socket.on("PUBACK", (jsonPUBACK) => {
         
         if(jsonPUBACK['returnCode'] == 0){
@@ -47,7 +54,7 @@ export default function Switch() {
   
         console.log(jsonPUBACK);
         
-      });
+    });
 
     return (
     <Box
@@ -72,8 +79,12 @@ export default function Switch() {
         />
         <Button 
         variant="contained"
-        onClick={handleClick}
+        onClick={handleClickPUBLISH}
         >Publicar</Button>
+        <Button
+        variant="contained"
+        onClick={handleClickRegisterPublisher}
+        >Hacerse Publicador</Button>
     </Box>
   );
 }

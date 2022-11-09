@@ -29,8 +29,14 @@ export default function Bulb() {
         };
         console.log(jwt);
         topicAux = topic;
+        
         socket.emit('SUBSCRIBE',jsonSUBSCRIBE);
-    
+        
+        let jsonREGPUBLISHER = {
+            "clientID": clientID,
+            "topic": topic +'$$'
+        }
+        socket.emit('REG-PUBLISHER',jsonREGPUBLISHER);
     };
 
     socket.on("SUBACK", (jsonSUBACK) => {
