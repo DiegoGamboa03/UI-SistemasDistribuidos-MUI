@@ -15,16 +15,16 @@ export default function Switch() {
     const { clientID } = useContext(ClientIDContext);
 
     const [topic, setTopic] = useState('');
+    const [state, setState] = useState('off');
 
-    let state = 'off';
     let topicAux = '';
     const handleClick = (event) => {    
         if(state == 'on'){
-            state = 'off';
+            setState('off');
         }else{
-            state = 'on';
+            setState('on');
         }
-        console.log('este es el estado: ' + state);
+        console.log('el valor del state: ' + state);
         console.log(topic);
         let jsonPUBLISH= {
             "Client-ID": clientID,
@@ -60,10 +60,10 @@ export default function Switch() {
         justifyContent: "center",
         textAlign: 'center',
         alignItems: 'center'
-    }}>
+    }}>  
         <Typography>{topicAux}</Typography>
-        {state == 'on' ? <Switchon style={{ height: 200, width:200, margin:'20px' }}/>
-        : <Switchoff style={{ height: 200, width:200, margin:'20px' }}/>}
+        {state == 'on' ? <Switchoff style={{ height: 200, width:200, margin:'20px' }}/>
+        : <Switchon style={{ height: 200, width:200, margin:'20px' }}/>}
         <TextField 
         id="tfTopic" 
         label="Topico"
