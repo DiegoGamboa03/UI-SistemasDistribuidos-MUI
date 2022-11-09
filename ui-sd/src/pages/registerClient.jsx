@@ -19,7 +19,7 @@ export default function RegisterTopic() {
 
     const handleClick = (event) => {
         let jsonREGCLIENT = {
-            "id": ClientID,
+            "clientID": ClientID,
             "type": type
           }
         socket.emit('REG-CLIENT',jsonREGCLIENT);
@@ -54,8 +54,8 @@ export default function RegisterTopic() {
             label="Tipo de dispositivo"
             onChange={handleChangeSelect}
         >
-            <MenuItem value={'lightbulb'}>Bombillo</MenuItem>
-            <MenuItem value={'Switch'}>Enchufe</MenuItem>
+            <MenuItem value={'bulb'}>Bombillo</MenuItem>
+            <MenuItem value={'switch'}>Enchufe</MenuItem>
         </Select>
         </FormControl>
         <Button 

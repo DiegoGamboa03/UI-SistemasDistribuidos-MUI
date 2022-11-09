@@ -18,7 +18,8 @@ export default function RegisterPublisher() {
         console.log(clientID);
         let jsonREGPUBLISHER = {
             "clientID": clientID,
-            "topic": topic
+            "topic": topic,
+            "type": 'switch'
         }
         socket.emit('REG-PUBLISHER',jsonREGPUBLISHER);
     };
